@@ -1,0 +1,22 @@
+Libraries：ST公司制作的STM32固件库3.50
+0.保留了原有的风格，更新模板只需要将各系统文件替换掉原先的就行，用户文件保留。
+
+1.Startup里面有4个文件，分别为LD(低容量，64K以下的STM32)，MD（中容量，如RBT6）...项目中加入适当的.s文件
+
+2.在options of target的device选择正确的型号。
+
+3.在options of target的C/C++的define里面填入合适的值：视STM32容量填入STM32F10X_LD，STM32F10X_MD，STM32F10X_HD，STM32F10X_CL其中一个。
+如果使用库里面的API函数，还添加USE_STDPERIPH_DRIVER，否则不加。如：
+STM32F10X_MD,USE_STDPERIPH_DRIVER
+
+4.将需要使用的外设的C文件添加到项目（默认添加到StdPeriph_Driver）
+
+5.在system_stm32f10x.c修改工作频率，默认为72MHz，在外部晶振为8MHz的情况下。
+
+6.使用时在stm32f10x_conf.h中选择合适的外设头文件。
+
+7.3.5库中SystemInit并不需要用户调用，在启动代码中自动执行了，因此省去了main中调用RCC_Configuration函数。但注意使用外设第一步要使能该外设的始终，不能忘记。
+
+8.增加了DelAll.bat可执行文件，双击将清楚工程内所有非程序编写文件（编译产生的中间文件和hex）。
+
+--BYYB
