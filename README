@@ -1,0 +1,3 @@
+Collects PPM wave from a FUTABA T10CG RC Transmitter and send pulse width infomation throgh a nRF24L01+ 2.4GHz chip.
+Used for controlling micro air vehicle.
+STM32F103RBT6 Platform.
